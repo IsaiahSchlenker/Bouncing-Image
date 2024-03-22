@@ -4,6 +4,7 @@ Created on Tue Mar 19 12:07:16 2024
 
 @author: bluet
 """
+import random
 import pygame
 pygame.init()
 
@@ -30,20 +31,35 @@ class Charlie(pygame.sprite.Sprite):
     def update(self):
         self.rect.right += self.dx
         if self.rect.centerx >= screen.get_width():
-            self.dx = -self.dx
+            self.rect.centerx = screen.get_width()
+            self.dx = -self.dx + random.randint(-10,10)
+            if self.dx > 25:
+                self.dx = 5
+            elif self.dx < -25:
+                self.dx = -5
         elif self.rect.centerx <= 0:
-            self.dx = -self.dx
+            self.rect.centerx = 0
+            self.dx = -self.dx + random.randint(-10,10)
+            if self.dx > 25:
+                self.dx = 5
+            elif self.dx < -25:
+                self.dx = -5
         self.rect.top += self.dy
         if self.rect.centery >= screen.get_height():
-            self.dy = -self.dy
+            self.rect.centery = screen.get_height()
+            self.dy = -self.dy + random.randint(-10,10)
+            if self.dy > 25:
+                self.dy = 5
+            elif self.dy < -25:
+                self.dy = -5
         elif self.rect.centery <= 0:
-            self.dy = -self.dy
-        
-        
-        # check bounds
-        
-        if self.rect.bottom > screen.get_height():
-            self.rect.top = 0
+            self.rect.centery = 0
+            self.dy = -self.dy + random.randint(-10,10)
+            if self.dy > 25:
+                self.dy = 5
+            elif self.dy < -25:
+                self.dy = -5
+    
             
 def main():
     
